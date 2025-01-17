@@ -37,3 +37,11 @@
     community.general.npm:
       path: /app # Inside app folder when we unzipped our code we get package.json file & at this place we need to install npm
       # thats why path we are giving as /app for installing npm
+
+  - name: copy backend service from ansible server to backend server
+    ansible.builtin.copy:
+      src: backend.service 
+      dest: /etc/systemd/system/backend.service # Here we are even mentioning backend.server at the end becoz 
+      #contents of the backend.service will be directly copied to folder created by us 
+      # by name (backend.service) to destination location of backend server inside the backend.service folder directly
+

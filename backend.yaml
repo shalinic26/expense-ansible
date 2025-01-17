@@ -11,6 +11,5 @@
   - name: Install NodeJS # IMP POINT ---For installations we need NOt write the commands against the module 
     ansible.builtin.package:
       name: nodejs
-      status: present # IMP POINT - Since we used package module we need to give "present. If we have used dnf module then we need to write as "installed"
+      state: present # IMP POINT - Since we used package module we need to give "present. If we have used dnf module then we need to write as "installed"
 
-      

@@ -32,3 +32,8 @@
       src: /tmp/backend.zip
       dest: /app
       remote_src: yes # this is required as our source is in our backend server but NOT in ansible server
+
+  - name: Install nodejs dependencies i.e. npm
+    community.general.npm:
+      path: /app # Inside app folder when we unzipped our code we get package.json file & at this place we need to install npm
+      # thats why path we are giving as /app for installing npm

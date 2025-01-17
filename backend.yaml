@@ -1,0 +1,16 @@
+- name: Configure backend server
+  hosts: backend
+  become: yes
+  tasks:
+  - name: Disable current NodeJS 
+    ansible.builtin.command: dnf module disable nodejs -y
+
+  - name: Enable NodeJS 20 Version
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+    
+  - name: Install NodeJS # IMP POINT ---For installations we need NOt write the commands against the module 
+    ansible.builtin.package:
+      name: nodejs
+      status: present # IMP POINT - Since we used package module we need to give "present. If we have used dnf module then we need to write as "installed"
+
+      

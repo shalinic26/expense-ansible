@@ -38,6 +38,6 @@
 
     # setting up root password is written only if connection to mysql failes then this below module will run otherwise this section will be skipped.
     # In our script as connecting to mysql using username and password was successful we are ignoring setting up root password 
-  - name: setup root password # ansible does NOT have root password option module
+  - name: setup root password # ansible does NOT have root password option module thats why we took command module 
     ansible.builtin.command: " mysql_secure_installation --set-root-pass {{ mysql_root_password }} "    
     when: mysql_info.failed is true

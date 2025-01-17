@@ -62,8 +62,11 @@
 
   - name: install python libs
     ansible.builtin.pip:
-      name: PyMySQL
+      name: "{{ item }}"
       executable: pip3.9 # As we are using ansible 3.9 
+    loop:
+    - PyMySQL
+    - cryptography
 
 
   - name: import mysql data    # Error came when we ran this code section --- So we will be adding a new python libs instalation code above this section

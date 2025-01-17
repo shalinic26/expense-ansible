@@ -31,3 +31,4 @@
     ansible.builtin.unarchive:
       src: /tmp/backend.zip
       dest: /app
+      remote_src: yes # this is required as our source is in our backend server but NOT in ansible server

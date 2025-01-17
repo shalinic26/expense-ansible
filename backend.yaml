@@ -13,3 +13,7 @@
       name: nodejs
       state: present # IMP POINT - Since we used package module we need to give "present. If we have used dnf module then we need to write as "installed"
 
+  - name: create expense user
+    ansible.builtin.user:
+      name: expense
+

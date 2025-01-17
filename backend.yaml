@@ -77,3 +77,10 @@
       login_password: ExpenseApp@1
       login_host: mysqlansible.expenseslist.online
       target: /app/schema/backend.sql 
+
+  - name: daemon reload and restart service 
+    ansible.builtin.systemd_service:
+      enabled: TRUE # why we need to give this i dint understand
+      state: restarted
+      daemon_reload: TRUE
+      name: backend # why we need to give this i dint understand

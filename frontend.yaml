@@ -12,3 +12,34 @@
       name: nginx
       state: started
       enabled: yes
+
+  - name: recursively remove html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: absent 
+
+  - name: Now create html directory
+    ansible.builtin.file:
+      name: /usr/share/nginx/html
+      state: directory
+
+  - name: Download frontend code
+    ansible.builtin.get_url: 
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+      dest: /tmp/frontend.zip
+
+  - name: Unzip frontend code
+    ansible.builtin.unarchive:
+      src: /tmp/frontend.zip
+      dest: /usr/share/nginx/html
+      remote_src: yes 
+
+  - name: copy expense config from ansible server to frontend server
+    ansible.builtin.copy:
+      src: expense.conf
+      dest: /etc/nginx/default.d/expense.conf 
+
+  - name: restart nginx
+    ansible.builtin.service:
+      state: restarted
+      name: nginx 
